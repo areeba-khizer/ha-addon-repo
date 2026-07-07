@@ -1,5 +1,5 @@
 name: "HA AWS Forwarder"
-version: "1.0.4"
+version: "1.0.5"
 slug: "ha-forwarder"
 description: "Streams Home Assistant state changes to AWS Kinesis or Firehose"
 url: "https://github.com/areeba-khizer/ha-addon-repo"
@@ -26,7 +26,7 @@ schema:
   ha_url: str
   ha_token: password
   aws_region: str
-  aws_access_key_id: str
+  aws_access_key_id: password
   aws_secret_access_key: password
   output_target: list(firehose|kinesis)
   firehose_delivery_stream: str
