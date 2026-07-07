@@ -7,6 +7,8 @@ arch:
   - aarch64
   - amd64
 
+homeassistant_api: true
+
 options:
   aws_region: "us-east-1"
   aws_access_key_id: ""
