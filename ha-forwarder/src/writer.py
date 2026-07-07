@@ -4,6 +4,7 @@ import logging
 
 import boto3
 
+import stats
 from config import AWS_ACCESS_KEY_ID, AWS_REGION, AWS_SECRET_ACCESS_KEY, FIREHOSE_DELIVERY_STREAM, KINESIS_STREAM_NAME, OUTPUT_TARGET
 
 logger = logging.getLogger(__name__)
@@ -28,6 +29,7 @@ def _get_client():
 # Blocking send — runs in a background thread so it never freezes the event loop
 def _send(record: dict) -> None:
     data = (json.dumps(record) + "\n").encode("utf-8")
+    stats.add(len(data))
     client = _get_client()
 
     if client is None:
