@@ -4,7 +4,7 @@ import logging
 
 import boto3
 
-from config import AWS_REGION, FIREHOSE_DELIVERY_STREAM, KINESIS_STREAM_NAME, OUTPUT_TARGET
+from config import AWS_ACCESS_KEY_ID, AWS_REGION, AWS_SECRET_ACCESS_KEY, FIREHOSE_DELIVERY_STREAM, KINESIS_STREAM_NAME, OUTPUT_TARGET
 
 logger = logging.getLogger(__name__)
 
@@ -16,7 +16,12 @@ def _get_client():
     global _client
     if _client is None and AWS_REGION:
         service = "firehose" if OUTPUT_TARGET == "firehose" else "kinesis"
-        _client = boto3.client(service, region_name=AWS_REGION)
+        _client = boto3.client(
+            service,
+            region_name=AWS_REGION,
+            aws_access_key_id=AWS_ACCESS_KEY_ID or None,
+            aws_secret_access_key=AWS_SECRET_ACCESS_KEY or None,
+        )
     return _client
 
 
