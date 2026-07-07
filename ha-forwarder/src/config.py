@@ -13,8 +13,8 @@ def _opt(key: str, default: str = "") -> str:
     return os.getenv(key.upper(), default)
 
 
-# HA connection — explicit token from options takes priority over Supervisor-injected token
-HA_URL = os.environ.get("HA_URL", "http://supervisor/core")
+# HA connection — read from add-on options, fall back to env vars for local dev
+HA_URL = _opt("ha_url") or os.environ.get("HA_URL", "http://supervisor/core")
 HA_TOKEN = _opt("ha_token") or os.environ.get("HA_TOKEN") or os.environ.get("SUPERVISOR_TOKEN", "")
 
 HA_SKIP_DOMAINS = set(d.strip() for d in _opt("ha_skip_domains").split(",") if d.strip())
