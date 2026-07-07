@@ -1,0 +1,30 @@
+name: "HA AWS Forwarder"
+version: "1.0.0"
+slug: "ha-forwarder"
+description: "Streams Home Assistant state changes to AWS Kinesis or Firehose"
+url: "https://github.com/your-username/ha-addon-repo"
+arch:
+  - aarch64
+  - amd64
+
+options:
+  aws_region: "us-east-1"
+  aws_access_key_id: ""
+  aws_secret_access_key: ""
+  output_target: "firehose"
+  firehose_delivery_stream: ""
+  kinesis_stream_name: ""
+  ha_skip_domains: "sun,zone,persistent_notification,automation,script"
+  ha_skip_contains: ""
+  ha_allow_rooms: ""
+
+schema:
+  aws_region: str
+  aws_access_key_id: str
+  aws_secret_access_key: password
+  output_target: list(firehose|kinesis)
+  firehose_delivery_stream: str
+  kinesis_stream_name: str
+  ha_skip_domains: str
+  ha_skip_contains: str
+  ha_allow_rooms: str
