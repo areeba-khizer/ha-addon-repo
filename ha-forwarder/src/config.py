@@ -13,9 +13,9 @@ def _opt(key: str, default: str = "") -> str:
     return os.getenv(key.upper(), default)
 
 
-# HA connection — set by run.sh from Supervisor-injected env vars
+# HA connection — explicit token from options takes priority over Supervisor-injected token
 HA_URL = os.environ.get("HA_URL", "http://supervisor/core")
-HA_TOKEN = os.environ.get("HA_TOKEN") or os.environ.get("SUPERVISOR_TOKEN", "")
+HA_TOKEN = _opt("ha_token") or os.environ.get("HA_TOKEN") or os.environ.get("SUPERVISOR_TOKEN", "")
 
 HA_SKIP_DOMAINS = set(d.strip() for d in _opt("ha_skip_domains").split(",") if d.strip())
 HA_ALLOW_ROOMS = [r.strip() for r in _opt("ha_allow_rooms").split(",") if r.strip()]

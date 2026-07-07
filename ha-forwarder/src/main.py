@@ -38,6 +38,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     logger.info("HA forwarder starting")
-    from config import HA_URL, HA_TOKEN
-    logger.info(f"HA_URL={HA_URL}  token_present={'yes' if HA_TOKEN else 'NO - token is empty'}")
     asyncio.run(_run(args.duration))
