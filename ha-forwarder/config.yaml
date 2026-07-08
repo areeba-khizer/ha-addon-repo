@@ -10,7 +10,7 @@ arch:
 homeassistant_api: true
 
 options:
-  ha_url: "http://192.168.0.106:8123"
+  ha_url: "http://supervisor/core"
   ha_token: ""
   aws_region: "eu-west-2"
   aws_access_key_id: ""
