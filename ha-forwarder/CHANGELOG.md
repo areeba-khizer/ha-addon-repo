@@ -2,6 +2,11 @@
 
 All notable changes to the HA AWS Forwarder addon are documented here.
 
+## [1.0.6] - 2026-07-08
+
+### Removed
+- `ha_token` config option — no longer needed. The Supervisor automatically injects a valid token via `homeassistant_api`, so there is nothing to configure manually
+
 ## [1.0.5] - 2026-07-08
 
 ### Added
