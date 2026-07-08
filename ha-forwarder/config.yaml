@@ -11,7 +11,6 @@ homeassistant_api: true
 
 options:
   ha_url: "http://supervisor/core"
-  ha_token: ""
   aws_region: "eu-west-2"
   aws_access_key_id: ""
   aws_secret_access_key: ""
@@ -24,7 +23,6 @@ options:
 
 schema:
   ha_url: str
-  ha_token: password
   aws_region: str
   aws_access_key_id: password
   aws_secret_access_key: password

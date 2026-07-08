@@ -2,12 +2,48 @@
 
 Custom Home Assistant add-on repository containing the **HA AWS Forwarder** add-on.
 
+```
+┌──────────────────────────────────────┐
+│           Home Assistant             │
+│                                      │
+│  light.living_room ──────────────►   │
+│  sensor.temperature ─────────────►   │  state changes
+│  binary_sensor.motion ───────────►   │  via WebSocket
+└─────────────────────┬────────────────┘
+                      │
+                      ▼
+           ┌─────────────────────┐
+           │   HA AWS Forwarder  │
+           │       Add-on        │
+           │                     │
+           │  filter by domain   │
+           │  filter by room     │
+           │  filter by entity   │
+           └────────┬────────────┘
+                    │
+          ┌─────────┴──────────┐
+          │                    │
+          ▼                    ▼
+  ┌───────────────┐   ┌────────────────┐
+  │    Kinesis    │   │    Firehose    │
+  │  Data Streams │   │    Delivery    │
+  └───────────────┘   └───────┬────────┘
+                              │
+                              ▼
+                     ┌────────────────┐
+                     │  S3 / Redshift │
+                     │  / OpenSearch  │
+                     └────────────────┘
+```
+
 ## Installation
 
-1. In Home Assistant, go to **Settings → Add-ons → Add-on Store**
-2. Click the **⋮** menu (top right) → **Repositories**
-3. Add this repository URL and click **Add**
-4. Find **HA AWS Forwarder** in the store and click **Install**
+1. Go to **Settings** → **Add-ons**
+2. Click **Add-on Store** — if you don't see it directly, look for an **Install Add-on** button (the label varies slightly by HA version)
+3. In the **top-right corner**, click the **⋮** (three dots) → **Repositories**
+4. Paste this URL and click **Add**:
+   `https://github.com/areeba-khizer/ha-addon-repo`
+5. Close the dialog — the **HA AWS Forwarder** card will appear in the store. Click it → **Install**
 
 ## Configuration
 
